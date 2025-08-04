@@ -13,9 +13,8 @@ func _ready() -> void:
 	md_table = get_parent().get_parent()
 	update_placer_color()
 
+# If its not *MY* table, placer becomes red
 func update_placer_color():
-	print(name, " CALLED ", "update_placer_color", GameState.cameraRig.target_table)
-	# If its not *MY* table, placer becomes red
 	var mat = placer_hint.get_surface_override_material(0) as ShaderMaterial
 	mat.set_shader_parameter("color", Color.RED if md_table != GameState.cameraRig.target_table else Color.GREEN)
 

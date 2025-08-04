@@ -68,7 +68,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or event is InputEventScreenDrag:
 		if selected_object == null:
 			self.rotation.y += event.relative.x / -GameState.cam_drag_speed
-			self.rotation.x += event.relative.y / -GameState.cam_drag_speed
+			self.rotation.x = clamp(self.rotation.x + event.relative.y / -GameState.cam_drag_speed, deg_to_rad(-90), deg_to_rad(0))
+			
 		elif not placing_mode:
 			selected_object.global_rotate(camera_3d.global_transform.basis.y, event.relative.x / GameState.cam_drag_speed)
 			selected_object.global_rotate(selected_object.global_transform.basis.x, event.relative.y / GameState.cam_drag_speed)
