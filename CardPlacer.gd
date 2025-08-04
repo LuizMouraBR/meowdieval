@@ -13,8 +13,8 @@ func _ready() -> void:
 	
 	# If its not *MY* table, placer becomes red
 	if md_table != GameState.current_player_table: 
-		var mat = placer_hint.get_active_material(0) as StandardMaterial3D
-		mat.emission = Color.RED
+		var mat = placer_hint.get_surface_override_material(0) as ShaderMaterial
+		mat.set_shader_parameter("color", Color.RED)
 
 func _on_area_3d_mouse_entered() -> void:
 	if not available: return
@@ -25,8 +25,8 @@ func _on_area_3d_mouse_entered() -> void:
 	
 	tween = get_tree().create_tween().set_parallel(true)
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	var mat = placer_hint.get_surface_override_material(0)
-	tween.tween_property(mat, "albedo_color", Color.WHITE, 0.05)
+	var mat = placer_hint.get_surface_override_material(0) as ShaderMaterial
+	tween.tween_property(mat, "shader_parameter/cutoff", 0.0, 0.15)
 
 func _on_area_3d_mouse_exited() -> void:
 	if is_instance_valid(tween) and tween.is_running():
@@ -34,5 +34,5 @@ func _on_area_3d_mouse_exited() -> void:
 		
 	tween = get_tree().create_tween().set_parallel(true)
 	tween.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	var mat = placer_hint.get_surface_override_material(0)
-	tween.tween_property(mat, "albedo_color", Color.TRANSPARENT, 0.5)
+	var mat = placer_hint.get_surface_override_material(0) as ShaderMaterial
+	tween.tween_property(mat, "shader_parameter/cutoff", 1.0, 0.5)

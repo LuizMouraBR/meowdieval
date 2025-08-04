@@ -12,7 +12,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 script = ExtResource("1_bk5nh")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, -1.27055e-21, -2.4869e-14, 0, 1, -5.21541e-08, 2.4869e-14, 5.21541e-08, 1, 0, 0, 2.3)
+transform = Transform3D(1, -1.29702e-21, -2.4869e-14, 0, 1, -5.21541e-08, 2.4869e-14, 5.21541e-08, 1, 0, 0, 2.3)
 attributes = SubResource("CameraAttributesPractical_aqk2v")
 current = true
 fov = 43.0

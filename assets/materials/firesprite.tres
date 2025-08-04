@@ -55,6 +55,7 @@ shader_parameter/noise_3 = SubResource("NoiseTexture2D_uwvh3")
 shader_parameter/n1speed = 1.0
 shader_parameter/n2speed = 2.0
 shader_parameter/n3speed = 3.0
+shader_parameter/skew_x_ammount = 0.0
 shader_parameter/power = 2.205
 shader_parameter/n2influence = 0.9
 shader_parameter/n3influence = 0.6

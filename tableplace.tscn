@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqdo3f684kejq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4hy44"]
+albedo_color = Color(0.521141, 0.521141, 0.521141, 1)
+emission_enabled = true
+emission = Color(0.891291, 4.18738e-06, 8.66354e-07, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_lti8b"]
+size = Vector3(0.97, 0.69, 1.13)
+
+[node name="TABLEPLACE" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.309354, 0.843829)
+material_override = SubResource("StandardMaterial3D_4hy44")
+mesh = SubResource("BoxMesh_lti8b")

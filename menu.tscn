@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxx8f5odg0pyh"]
+
+[ext_resource type="Script" uid="uid://cop1uh6et5tvk" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="PackedScene" uid="uid://n626vapyxiin" path="res://assets/centerpillar.tscn" id="2_ouk20"]
+[ext_resource type="PackedScene" uid="uid://cyu50oim1xhyq" path="res://scene_env/scenelight_night.tscn" id="3_mae5d"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_lti8b")
+
+[node name="GameConfigContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -158.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 34
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameConfigContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="GameConfigContainer/VBoxContainer"]
+layout_mode = 2
+text = "2 PLAYERS"
+
+[node name="HSlider" type="HSlider" parent="GameConfigContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 2.0
+max_value = 8.0
+value = 2.0
+ticks_on_borders = true
+
+[node name="GoButton" type="Button" parent="GameConfigContainer/VBoxContainer"]
+layout_mode = 2
+text = "GO!"
+
+[node name="LoadingContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = -158.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 34
+theme_override_constants/margin_top = 34
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 34
+
+[node name="Label" type="Label" parent="LoadingContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Loading..."
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="centerpillar" parent="." instance=ExtResource("2_ouk20")]
+transform = Transform3D(0.345, 0, 0, 0, 0.345, 0, 0, 0, 0.345, 0, 0, 0)
+
+[node name="Scenelight" parent="." instance=ExtResource("3_mae5d")]
+
+[node name="center" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 3.42535, 0)
+
+[node name="CamPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5.712, 5.363)
+projection = 1
+fov = 34.0
+size = 4.0
+
+[connection signal="drag_ended" from="GameConfigContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_drag_ended"]
+[connection signal="value_changed" from="GameConfigContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="GameConfigContainer/VBoxContainer/GoButton" to="." method="_on_go_button_pressed"]

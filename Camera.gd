@@ -1,10 +1,11 @@
 extends Node3D
+class_name CameraRig
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var marker_3d: Marker3D = $Camera3D/Marker3D
 @onready var selected_object_ui: Control = $SelectedObjectUI
 @onready var marker_placer: Marker3D = $Camera3D/MarkerPlacer
 @onready var btn_place_card: Button = $SelectedObjectUI/MarginContainer/HBoxContainer/BtnPlaceCard
-@export var target_table : Node3D
+@export var target_table : MDTable
 
 var hovered_object = null
 var selected_object : CardBase = null
@@ -19,6 +20,10 @@ func _ready() -> void:
 		marker_3d.position.z = -0.55 
 		camera_3d.position.z = 4
 		camera_3d.fov = 58
+
+func change_table(table):
+	target_table = table
+	rotate_idle()
 
 func update():
 	update_ui()
@@ -48,7 +53,8 @@ func update_dof():
 func rotate_idle():
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "global_rotation", Vector3(deg_to_rad(-38.7), 0, 0), 1)
+	tween.tween_property(self, "global_position", target_table.pivot_position.global_position, 1)
+	tween.tween_property(self, "global_rotation", Vector3(deg_to_rad(-38.7), target_table.global_rotation.y, 0), 1)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or event is InputEventScreenDrag:
