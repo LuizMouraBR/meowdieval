@@ -4,4 +4,5 @@
 [ext_resource type="Script" uid="uid://bcp0km8xnl210" path="res://MDTable.gd" id="2_4fd2h"]
 
 [node name="md_table" instance=ExtResource("1_wis7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
 script = ExtResource("2_4fd2h")

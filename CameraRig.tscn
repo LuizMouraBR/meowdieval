@@ -1,73 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5blkqdt6vuva"]
+[gd_scene load_steps=3 format=3 uid="uid://c5blkqdt6vuva"]
 
 [ext_resource type="Script" uid="uid://dbxt2k735sr6t" path="res://Camera.gd" id="1_bk5nh"]
-[ext_resource type="Texture2D" uid="uid://dapdcld5nbth4" path="res://lf2A1.jpg" id="2_4idhk"]
-[ext_resource type="Shader" uid="uid://dx07llpcjoee0" path="res://fisheye.gdshader" id="2_bk5nh"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_3k7dy"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_aqk2v"]
 dof_blur_far_enabled = true
 dof_blur_far_distance = 0.01
 dof_blur_amount = 0.14
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4idhk"]
-shader = ExtResource("2_bk5nh")
-shader_parameter/amount = -0.05
-
 [node name="CamPivot" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_bk5nh")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="."]
-collision_mask = 2
-shape = SubResource("SphereShape3D_3k7dy")
-spring_length = 2.3
-
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
-transform = Transform3D(1, 7.10543e-15, 2.84217e-14, 0, 1, -1.56462e-07, 2.4869e-14, 5.21541e-08, 1, 0, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -1.27055e-21, -2.4869e-14, 0, 1, -5.21541e-08, 2.4869e-14, 5.21541e-08, 1, 0, 0, 2.3)
 attributes = SubResource("CameraAttributesPractical_aqk2v")
 current = true
 fov = 43.0
 far = 200.0
 
-[node name="Marker3D" type="Marker3D" parent="SpringArm3D/Camera3D"]
+[node name="Marker3D" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.437)
 
-[node name="MarkerPlacer" type="Marker3D" parent="SpringArm3D/Camera3D"]
+[node name="MarkerPlacer" type="Marker3D" parent="Camera3D"]
 transform = Transform3D(1, 2.98193e-08, -1.89465e-08, -3.48036e-08, 0.739302, -0.673374, -6.07233e-09, 0.673374, 0.739302, -3.41868e-09, -0.243164, -0.505328)
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-
-[node name="TestTexture" type="TextureRect" parent="Control"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -141.0
-offset_bottom = 141.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_4idhk")
-
-[node name="Fisheye" type="ColorRect" parent="Control"]
-visible = false
-material = SubResource("ShaderMaterial_4idhk")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
 
 [node name="SelectedObjectUI" type="Control" parent="."]
 visible = false

@@ -1,22 +1,21 @@
 extends Node3D
-@onready var camera_3d: Camera3D = $SpringArm3D/Camera3D
-@onready var marker_3d: Marker3D = $SpringArm3D/Camera3D/Marker3D
+@onready var camera_3d: Camera3D = $Camera3D
+@onready var marker_3d: Marker3D = $Camera3D/Marker3D
 @onready var selected_object_ui: Control = $SelectedObjectUI
-@onready var marker_placer: Marker3D = $SpringArm3D/Camera3D/MarkerPlacer
+@onready var marker_placer: Marker3D = $Camera3D/MarkerPlacer
 @onready var btn_place_card: Button = $SelectedObjectUI/MarginContainer/HBoxContainer/BtnPlaceCard
-@onready var spring_arm_3d: SpringArm3D = $SpringArm3D
 @export var target_table : Node3D
 
-var sens = 320
 var hovered_object = null
 var selected_object : CardBase = null
 var placing_mode = false
 
 func _ready() -> void:
+	GameState.cameraRig = self
 	rotate_idle()
 	update_dof()
 	
-	if GameState.is_mobile:
+	if GameState.aspect_raio() < 1.0:
 		marker_3d.position.z = -0.55 
 		camera_3d.position.z = 4
 		camera_3d.fov = 58
@@ -54,11 +53,11 @@ func rotate_idle():
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or event is InputEventScreenDrag:
 		if selected_object == null:
-			self.rotation.y += event.relative.x / -sens
-			self.rotation.x += event.relative.y / -sens
+			self.rotation.y += event.relative.x / -GameState.cam_drag_speed
+			self.rotation.x += event.relative.y / -GameState.cam_drag_speed
 		elif not placing_mode:
-			selected_object.global_rotate(camera_3d.global_transform.basis.y, event.relative.x / sens)
-			selected_object.global_rotate(selected_object.global_transform.basis.x, event.relative.y / sens)
+			selected_object.global_rotate(camera_3d.global_transform.basis.y, event.relative.x / GameState.cam_drag_speed)
+			selected_object.global_rotate(selected_object.global_transform.basis.x, event.relative.y / GameState.cam_drag_speed)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

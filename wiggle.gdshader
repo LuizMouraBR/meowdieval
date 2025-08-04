@@ -1,17 +1,19 @@
 shader_type spatial;
 render_mode cull_disabled;
 
-uniform sampler2D noise;
-uniform sampler2D grass;
-uniform float noise_strength = 0.2;
+uniform float sway_strength : hint_range(0.0, 1.0) = 0.2;
+uniform float sway_speed : hint_range(0.1, 10.0) = 2.0;
+uniform float sway_scale : hint_range(0.1, 10.0) = 1.0;
 
 void vertex() {
-	float appl = texture(noise, UV * float(VERTEX_ID) * TIME / 16.0).r * noise_strength;
-	VERTEX.xz = (vec4(VERTEX + appl - noise_strength, 1.0)).xz;
-}
+    // Create some pseudo-random variation per instance
+    float sway_phase = sin(VERTEX.x * 0.1 + VERTEX.z * 0.1);
+    
+    // World position based sway
+    float sway = sin(TIME * sway_speed + (VERTEX.x + VERTEX.z) * sway_scale + sway_phase);
 
-void fragment() {
-	vec4 grass_tex = texture(grass, UV);
-	ALBEDO = grass_tex.rgb;
-	ALPHA_TEXTURE_COORDINATE = grass_tex.ga;
+    // Apply sway only above ground (e.g., don't move the base of the grass)
+    float height_factor = clamp(VERTEX.y, 0.0, 1.0);
+
+    VERTEX.x += sway * sway_strength * height_factor;
 }
