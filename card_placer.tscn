@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgd5bescfbl0"]
+
+[ext_resource type="Script" uid="uid://csej8kiy5tjk5" path="res://CardPlacer.gd" id="1_aydie"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjlel"]
+size = Vector3(0.142, 0.005, 0.242)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aydie"]
+size = Vector2(0.142, 0.242)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aydie"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+emission_enabled = true
+emission = Color(0.352616, 0.819907, 1.92523e-06, 1)
+emission_energy_multiplier = 4.02
+
+[node name="CardPlacer" type="Node3D"]
+script = ExtResource("1_aydie")
+
+[node name="Area3D" type="StaticBody3D" parent="."]
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_rjlel")
+
+[node name="PlacerHint" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_aydie")
+surface_material_override/0 = SubResource("StandardMaterial3D_aydie")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

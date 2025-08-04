@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://1upuywkatabf"]
+
+[ext_resource type="Shader" uid="uid://do8015bc50na3" path="res://wiggle.gdshader" id="1_cnsih"]
+[ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://assets/textures/grassbushcc008.png" id="2_e2aod"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oq805"]
+size = Vector2(1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oq805"]
+frequency = 0.004
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_epxn0"]
+width = 256
+height = 256
+seamless = true
+seamless_blend_skirt = 0.287
+noise = SubResource("FastNoiseLite_oq805")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bq1xa"]
+render_priority = 0
+shader = ExtResource("1_cnsih")
+shader_parameter/noise = SubResource("NoiseTexture2D_epxn0")
+shader_parameter/grass = ExtResource("2_e2aod")
+shader_parameter/noise_strength = 0.105
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.434807, 0)
+mesh = SubResource("PlaneMesh_oq805")
+surface_material_override/0 = SubResource("ShaderMaterial_bq1xa")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0.434807, 0)
+mesh = SubResource("PlaneMesh_oq805")
+surface_material_override/0 = SubResource("ShaderMaterial_bq1xa")

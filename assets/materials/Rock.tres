@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bjts1ptee75j5"]
+
+[ext_resource type="Texture2D" uid="uid://bjnlaje7xspbu" path="res://assets/textures/rock_face_03_diff_1k.jpg" id="1_egm2p"]
+[ext_resource type="Texture2D" uid="uid://dys6xh1vgakp7" path="res://assets/textures/rock_face_03_nor_gl_1k.jpg" id="2_gqh8l"]
+
+[resource]
+albedo_texture = ExtResource("1_egm2p")
+roughness = 0.91
+normal_enabled = true
+normal_scale = 2.7
+normal_texture = ExtResource("2_gqh8l")

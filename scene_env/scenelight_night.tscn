@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyu50oim1xhyq"]
+
+[ext_resource type="Texture2D" uid="uid://ceo3u04peyco7" path="res://kloppenheim_02_puresky_2k.hdr" id="1_yti4i"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_036b0"]
+panorama = ExtResource("1_yti4i")
+energy_multiplier = 0.17
+
+[sub_resource type="Sky" id="Sky_dwbse"]
+resource_local_to_scene = true
+sky_material = SubResource("PanoramaSkyMaterial_036b0")
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_fj7yv"]
+background_mode = 2
+sky = SubResource("Sky_dwbse")
+tonemap_mode = 3
+tonemap_exposure = 0.8
+glow_enabled = true
+glow_bloom = 0.03
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0.015391, 0.0595186, 0.133711, 1)
+fog_density = 0.035
+fog_sky_affect = 0.0
+
+[node name="Scenelight" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fj7yv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.811812, 0.192129, -0.551405, 0.144046, 0.84924, 0.507979, 0.565873, -0.491811, 0.661748, 0, 2.99249, 0)
+light_color = Color(0.783425, 0.867631, 0.913698, 1)
+light_energy = 0.09
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.185
+directional_shadow_max_distance = 20.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.5, 1.69735, 2.59808)
+light_color = Color(0.907546, 0.606315, 0.198955, 1)
+light_energy = 2.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, -1.5, 1.69735, -2.59808)
+light_color = Color(0.907546, 0.606315, 0.198955, 1)
+light_energy = 2.0

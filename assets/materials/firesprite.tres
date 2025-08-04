@@ -1,0 +1,62 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://d24ae6u41i8nf"]
+
+[ext_resource type="Shader" uid="uid://c64v3jjfe3oit" path="res://firesprite.gdshader" id="1_j83sr"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j83sr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_corsb"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.497
+noise = SubResource("FastNoiseLite_j83sr")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lfsgq"]
+seed = 640
+frequency = 0.0195
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0tnr1"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 0.529
+noise = SubResource("FastNoiseLite_lfsgq")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tymck"]
+seed = 1005
+frequency = 0.047
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uwvh3"]
+width = 128
+height = 128
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.383
+noise = SubResource("FastNoiseLite_tymck")
+
+[sub_resource type="Gradient" id="Gradient_txvt1"]
+offsets = PackedFloat32Array(0, 0.701835, 0.802752)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wrvxa"]
+gradient = SubResource("Gradient_txvt1")
+width = 32
+height = 32
+fill_to = Vector2(0, 1)
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_j83sr")
+shader_parameter/color = Color(0.847059, 0.435294, 1, 1)
+shader_parameter/topbottom_gradient = SubResource("GradientTexture2D_wrvxa")
+shader_parameter/noise_1 = SubResource("NoiseTexture2D_corsb")
+shader_parameter/noise_2 = SubResource("NoiseTexture2D_0tnr1")
+shader_parameter/noise_3 = SubResource("NoiseTexture2D_uwvh3")
+shader_parameter/n1speed = 1.0
+shader_parameter/n2speed = 2.0
+shader_parameter/n3speed = 3.0
+shader_parameter/power = 2.205
+shader_parameter/n2influence = 0.9
+shader_parameter/n3influence = 0.6
+shader_parameter/UV_Multiplier = Vector2(10.139, 1.435)
+shader_parameter/n4size = Vector2(0.345, 2.345)

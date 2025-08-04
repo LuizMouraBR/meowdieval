@@ -1,0 +1,280 @@
+[gd_scene load_steps=25 format=3 uid="uid://du2ycbbgoh8s2"]
+
+[ext_resource type="Texture2D" uid="uid://cgabqj4ox6jys" path="res://lf2D1.jpg" id="1_kikvd"]
+[ext_resource type="Script" uid="uid://bf8o7h3bhhb0r" path="res://CardBase.gd" id="1_rjlel"]
+[ext_resource type="Theme" uid="uid://d0x4jumqabujw" path="res://CardTheme.tres" id="2_q5obu"]
+[ext_resource type="Texture2D" uid="uid://df6gjfelha2jt" path="res://icon.svg" id="4_e484p"]
+[ext_resource type="AudioStream" uid="uid://bx1b0txlukwwp" path="res://assets/sounds/card_pickup.ogg" id="5_fpac0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rjlel"]
+size = Vector3(0.141602, 0.008, 0.242188)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nxf5b"]
+size = Vector2(0.15, 0.25)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e484p"]
+viewport_path = NodePath("Front/SubViewport")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_e484p"]
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fpac0"]
+as_normal_map = true
+noise = SubResource("FastNoiseLite_e484p")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kikvd"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("ViewportTexture_e484p")
+roughness = 0.5
+normal_scale = 0.25
+normal_texture = SubResource("NoiseTexture2D_fpac0")
+texture_filter = 5
+texture_repeat = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fpac0"]
+size = Vector2(0.15, 0.25)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1i5pp"]
+viewport_path = NodePath("Back/SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_e484p"]
+offsets = PackedFloat32Array(0.388889, 0.772727)
+colors = PackedColorArray(0, 0.49047, 0.56162, 0, 0.17018, 0.488022, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fpac0"]
+seed = 305
+frequency = 0.0165
+domain_warp_enabled = true
+domain_warp_amplitude = 29.615
+domain_warp_fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1i5pp"]
+width = 180
+height = 180
+color_ramp = SubResource("Gradient_e484p")
+noise = SubResource("FastNoiseLite_fpac0")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e484p"]
+width = 180
+height = 180
+as_normal_map = true
+color_ramp = SubResource("Gradient_e484p")
+noise = SubResource("FastNoiseLite_fpac0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjytt"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("ViewportTexture_1i5pp")
+roughness = 0.12
+normal_texture = SubResource("NoiseTexture2D_e484p")
+detail_blend_mode = 1
+detail_albedo = SubResource("NoiseTexture2D_1i5pp")
+texture_repeat = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4rk6"]
+bg_color = Color(0.438388, 0.224551, 0.0197454, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Gradient" id="Gradient_fpac0"]
+offsets = PackedFloat32Array(0.00505051, 0.924242)
+colors = PackedColorArray(6.93083e-06, 0.973259, 0.9075, 1, 0.24, 1, 0.734, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1i5pp"]
+gradient = SubResource("Gradient_fpac0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e484p"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_1i5pp")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e484p"]
+lifetime_randomness = 0.56
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 0.1
+gravity = Vector3(0, 0, 0)
+scale_min = 0.01
+scale_max = 0.03
+
+[sub_resource type="QuadMesh" id="QuadMesh_e484p"]
+
+[node name="Card" type="Node3D"]
+script = ExtResource("1_rjlel")
+
+[node name="Area3D" type="StaticBody3D" parent="."]
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_rjlel")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_nxf5b")
+surface_material_override/0 = SubResource("StandardMaterial3D_kikvd")
+
+[node name="SubViewport" type="SubViewport" parent="Front"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+scaling_3d_scale = 0.4
+gui_disable_input = true
+gui_snap_controls_to_pixels = false
+sdf_oversize = 0
+size = Vector2i(300, 500)
+render_target_update_mode = 1
+
+[node name="Control" type="Control" parent="Front/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_q5obu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Front/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="Front/SubViewport/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Front/SubViewport/Control/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Front/SubViewport/Control/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Front/SubViewport/Control/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Front/SubViewport/Control/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("1_kikvd")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Front/SubViewport/Control/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CARD_NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Front/SubViewport/Control/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(4.735, 5.765)
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_fpac0")
+surface_material_override/0 = SubResource("StandardMaterial3D_pjytt")
+
+[node name="SubViewport" type="SubViewport" parent="Back"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+scaling_3d_scale = 0.4
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+gui_snap_controls_to_pixels = false
+sdf_oversize = 0
+size = Vector2i(300, 500)
+render_target_update_mode = 1
+
+[node name="Control" type="Control" parent="Back/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_q5obu")
+
+[node name="MarginContainer" type="MarginContainer" parent="Back/SubViewport/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="Back/SubViewport/Control/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b4rk6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Back/SubViewport/Control/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="TextureRect" type="TextureRect" parent="Back/SubViewport/Control/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("4_e484p")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_e484p")
+cast_shadow = 0
+amount = 23
+lifetime = 7.0
+randomness = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_e484p")
+draw_pass_1 = SubResource("QuadMesh_e484p")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fpac0")
+volume_db = -4.0
+pitch_scale = 2.55
