@@ -1,10 +1,10 @@
-[gd_scene load_steps=38 format=4 uid="uid://cthpf3mlasnaa"]
+[gd_scene load_steps=36 format=4 uid="uid://cthpf3mlasnaa"]
 
 [ext_resource type="PackedScene" uid="uid://mwp7uptnk4ec" path="res://scene_env/scenelight_day.tscn" id="1_2u3nc"]
 [ext_resource type="Script" uid="uid://d000dnmr6nhsj" path="res://WorldComposer.gd" id="1_26xuy"]
 [ext_resource type="Texture2D" uid="uid://cnxqjbc7dk5yq" path="res://assets/textures/aerial_grass_rock_diff_1k.jpg" id="2_ic0uy"]
+[ext_resource type="Script" uid="uid://bql0govle1sv8" path="res://TableManager.gd" id="2_ikiii"]
 [ext_resource type="PackedScene" uid="uid://sm4471cb7ewc" path="res://assets/trees.blend" id="3_70uel"]
-[ext_resource type="PackedScene" uid="uid://c1jevrpe60bh1" path="res://assets/md_table.tscn" id="5_036b0"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="6_26xuy"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://assets/textures/grassbushcc008.png" id="7_bc84e"]
 [ext_resource type="ArrayMesh" uid="uid://i31wp5pievrb" path="res://assets/mesh/rocks_Icosphere_001.res" id="7_k3n1d"]
@@ -15,8 +15,6 @@
 [ext_resource type="ArrayMesh" uid="uid://curtmqcfqtgto" path="res://assets/mesh/rocks_Icosphere_004.res" id="10_ikiii"]
 [ext_resource type="PackedScene" uid="uid://c5blkqdt6vuva" path="res://CameraRig.tscn" id="11_2o6r5"]
 [ext_resource type="ArrayMesh" uid="uid://befa5ann3m07j" path="res://assets/mesh/rocks_Icosphere.res" id="11_cbp6q"]
-[ext_resource type="Material" uid="uid://bcxcletb5jevm" path="res://assets/materials/MDTable_Main2.tres" id="13_70uel"]
-[ext_resource type="Material" uid="uid://c0xu34jhbjlwv" path="res://assets/materials/MDTable_Main_S4.tres" id="14_2u3nc"]
 [ext_resource type="Script" uid="uid://bh3y6d4e3xyk2" path="res://CardPile.gd" id="15_udxuc"]
 [ext_resource type="PackedScene" uid="uid://n626vapyxiin" path="res://assets/centerpillar.tscn" id="17_ikiii"]
 [ext_resource type="Material" uid="uid://d24ae6u41i8nf" path="res://assets/materials/firesprite.tres" id="17_udxuc"]
@@ -198,6 +196,13 @@ cap_bottom = false
 [node name="World" type="Node3D"]
 script = ExtResource("1_26xuy")
 
+[node name="CameraRig" parent="." instance=ExtResource("11_2o6r5")]
+transform = Transform3D(-4.17993e-08, 0.0711665, 0.997464, 2.67995e-08, 0.997464, -0.0711665, -1, 2.37568e-08, -4.36005e-08, -1.19209e-07, 0.520701, 0.494671)
+
+[node name="TableManager" type="Node3D" parent="." node_paths=PackedStringArray("camera_rig")]
+script = ExtResource("2_ikiii")
+camera_rig = NodePath("../CameraRig")
+
 [node name="Scenelight" parent="." instance=ExtResource("1_2u3nc")]
 
 [node name="Terrain3D" type="Terrain3D" parent="."]
@@ -281,38 +286,6 @@ mesh = ExtResource("11_cbp6q")
 transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0.98073, 0.0206365, 0.130416)
 mesh = ExtResource("8_2u3nc")
 
-[node name="TABLES" type="Node" parent="."]
-
-[node name="md_table" parent="TABLES" instance=ExtResource("5_036b0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.972241)
-
-[node name="Skin1" parent="TABLES/md_table" index="0"]
-material_override = ExtResource("13_70uel")
-
-[node name="Skin2" parent="TABLES/md_table" index="16"]
-visible = false
-
-[node name="Skin3" parent="TABLES/md_table" index="17"]
-visible = false
-
-[node name="Skin4" parent="TABLES/md_table" index="18"]
-visible = false
-
-[node name="md_table2" parent="TABLES" instance=ExtResource("5_036b0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1)
-
-[node name="Skin1" parent="TABLES/md_table2" index="0"]
-visible = false
-
-[node name="Skin2" parent="TABLES/md_table2" index="16"]
-visible = false
-
-[node name="Skin3" parent="TABLES/md_table2" index="17"]
-visible = false
-
-[node name="Skin4" parent="TABLES/md_table2" index="18"]
-material_override = ExtResource("14_2u3nc")
-
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.909199, 0)
 intensity = 0.5
@@ -329,10 +302,3 @@ surface_material_override/0 = ExtResource("17_udxuc")
 
 [node name="centerpillar" parent="." instance=ExtResource("17_ikiii")]
 transform = Transform3D(0.325, 0, 0, 0, 0.325, 0, 0, 0, 0.325, 0, 0, 0)
-
-[node name="CameraRig" parent="." node_paths=PackedStringArray("target_table") instance=ExtResource("11_2o6r5")]
-transform = Transform3D(-4.17993e-08, 0.0711665, 0.997464, 2.67995e-08, 0.997464, -0.0711665, -1, 2.37568e-08, -4.36005e-08, -1.19209e-07, 0.520701, 0.494671)
-target_table = NodePath("../TABLES/md_table")
-
-[editable path="TABLES/md_table"]
-[editable path="TABLES/md_table2"]

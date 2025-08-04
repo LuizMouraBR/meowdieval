@@ -14,3 +14,9 @@ func _ready() -> void:
 			var instance : CardPlacer = CARD_PLACER.instantiate()
 			child.add_child(instance)
 			
+
+func set_skin(id : int):
+	for child in get_children():
+		if child.name.begins_with("Skin") and not child.name.ends_with(str(id)):
+			child.visible = false
+			

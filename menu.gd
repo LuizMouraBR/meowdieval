@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 
 	elif load_status == ResourceLoader.THREAD_LOAD_LOADED:
 		# The scene is fully loaded — now get it and change scene
-		GameState.banana_value = 69
 		loaded_resource = ResourceLoader.load_threaded_get(target_scene_path)
 		if loaded_resource:
 			get_tree().change_scene_to_packed(loaded_resource)
@@ -57,5 +56,6 @@ func update_tables():
 func _on_go_button_pressed() -> void:
 	game_config_container.visible = false
 	loading_container.visible = true
+	GameState.player_count = int(h_slider.value)
 	ResourceLoader.load_threaded_request(target_scene_path)
 	load_status = ResourceLoader.THREAD_LOAD_IN_PROGRESS

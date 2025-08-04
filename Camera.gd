@@ -7,6 +7,8 @@ class_name CameraRig
 @onready var btn_place_card: Button = $SelectedObjectUI/MarginContainer/HBoxContainer/BtnPlaceCard
 @export var target_table : MDTable
 
+signal target_table_changed(table : MDTable)
+
 var hovered_object = null
 var selected_object : CardBase = null
 var placing_mode = false
@@ -24,6 +26,7 @@ func _ready() -> void:
 func change_table(table):
 	target_table = table
 	rotate_idle()
+	target_table_changed.emit()
 
 func update():
 	update_ui()
@@ -51,10 +54,15 @@ func update_dof():
 	tween.tween_property(camera_3d.attributes, "dof_blur_amount", amount, GameState.card_anim_speed)
 
 func rotate_idle():
+	if not is_instance_valid(target_table): return
+	
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(self, "global_position", target_table.pivot_position.global_position, 1)
-	tween.tween_property(self, "global_rotation", Vector3(deg_to_rad(-38.7), target_table.global_rotation.y, 0), 1)
+	#tween.tween_property(self, "global_position", target_table.pivot_position.global_position, 1)
+	#tween.tween_property(self, "global_rotation", Vector3(deg_to_rad(-38.7), target_table.global_rotation.y, 0), 1)
+	#Vector3(deg_to_rad(-38.7), target_table.global_rotation.y, 0)
+	var tgt_transform = target_table.pivot_position.global_transform
+	tween.tween_property(self, "global_transform", tgt_transform, 1)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or event is InputEventScreenDrag:

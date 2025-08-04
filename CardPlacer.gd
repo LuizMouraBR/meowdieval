@@ -9,12 +9,15 @@ var available : bool = true :
 var tween : Tween
 
 func _ready() -> void:
+	GameState.cameraRig.target_table_changed.connect(update_placer_color)
 	md_table = get_parent().get_parent()
-	
+	update_placer_color()
+
+func update_placer_color():
+	print(name, " CALLED ", "update_placer_color", GameState.cameraRig.target_table)
 	# If its not *MY* table, placer becomes red
-	if md_table != GameState.current_player_table: 
-		var mat = placer_hint.get_surface_override_material(0) as ShaderMaterial
-		mat.set_shader_parameter("color", Color.RED)
+	var mat = placer_hint.get_surface_override_material(0) as ShaderMaterial
+	mat.set_shader_parameter("color", Color.RED if md_table != GameState.cameraRig.target_table else Color.GREEN)
 
 func _on_area_3d_mouse_entered() -> void:
 	if not available: return

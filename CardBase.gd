@@ -33,7 +33,7 @@ func place(placer : CardPlacer) -> bool:
 		return false
 	
 	# Prevent player from placing card on oponents table!
-	if GameState.current_player_table != placer.md_table:
+	if GameState.cameraRig.target_table != placer.md_table:
 		return false
 	
 	top_level = true

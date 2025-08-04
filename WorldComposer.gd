@@ -5,5 +5,3 @@ class_name WorldComposer
 func _ready() -> void:
 	if GameState.is_mobile:
 		reflection_probe.queue_free()
-	
-	print(GameState.banana_value)

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://m5rnfwyyog4w"]
+
+[ext_resource type="PackedScene" uid="uid://c1jevrpe60bh1" path="res://assets/md_table.tscn" id="1_jd0nb"]
+
+[node name="Table" type="Node3D"]
+
+[node name="md_table" parent="." instance=ExtResource("1_jd0nb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.04565)
