@@ -17,7 +17,7 @@ func _on_h_slider_value_changed(value: float) -> void:
 	update_tables()
 
 func _physics_process(delta: float) -> void:
-	cam_pivot.rotate_y(delta * 0.1)
+	cam_pivot.rotate_y(delta * 0.04)
 	
 	if load_status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:
 		var progress = []

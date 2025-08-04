@@ -58,9 +58,6 @@ func rotate_idle():
 	
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	#tween.tween_property(self, "global_position", target_table.pivot_position.global_position, 1)
-	#tween.tween_property(self, "global_rotation", Vector3(deg_to_rad(-38.7), target_table.global_rotation.y, 0), 1)
-	#Vector3(deg_to_rad(-38.7), target_table.global_rotation.y, 0)
 	var tgt_transform = target_table.pivot_position.global_transform
 	tween.tween_property(self, "global_transform", tgt_transform, 1)
 
