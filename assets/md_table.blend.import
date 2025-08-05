@@ -34,13 +34,21 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "materials": {
-"MDTable_Main": {
+"TableSkin1": {
 "use_external/enabled": true,
-"use_external/path": "uid://dbcxfb507xrrp"
+"use_external/path": "uid://cn4p8uxpry8k"
 },
-"MDTable_Wood": {
+"TableSkin2": {
 "use_external/enabled": true,
-"use_external/path": "uid://de67ysj3dvknh"
+"use_external/path": "uid://cn4p8uxpry8k"
+},
+"TableSkin3": {
+"use_external/enabled": true,
+"use_external/path": "uid://cn4p8uxpry8k"
+},
+"TableSkin4": {
+"use_external/enabled": true,
+"use_external/path": "uid://cn4p8uxpry8k"
 }
 }
 }

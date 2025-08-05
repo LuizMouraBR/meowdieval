@@ -1,5 +1,5 @@
 extends Control
-const TABLEPLACE = preload("res://tableplace.tscn")
+const TABLEPLACE = preload("res://scenes/prefabs/TablePlaceholder.tscn")
 
 @onready var label: Label = $GameConfigContainer/VBoxContainer/Label
 @onready var h_slider: HSlider = $GameConfigContainer/VBoxContainer/HSlider
@@ -8,7 +8,7 @@ const TABLEPLACE = preload("res://tableplace.tscn")
 @onready var game_config_container: MarginContainer = $GameConfigContainer
 @onready var loading_container: MarginContainer = $LoadingContainer
 @onready var progress_bar: ProgressBar = $LoadingContainer/ProgressBar
-var target_scene_path = "res://world.tscn"
+var target_scene_path = "res://scenes/levels/World.tscn"
 var load_status = null
 var loaded_resource: Resource = null
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c5blkqdt6vuva"]
 
-[ext_resource type="Script" uid="uid://dbxt2k735sr6t" path="res://Camera.gd" id="1_bk5nh"]
+[ext_resource type="Script" uid="uid://dbxt2k735sr6t" path="res://scripts/Camera.gd" id="1_bk5nh"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_aqk2v"]
 dof_blur_far_enabled = true

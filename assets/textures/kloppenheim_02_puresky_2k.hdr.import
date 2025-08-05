@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqvillwsvt62p"
-path.s3tc="res://.godot/imported/heightmapper-1753349343933.png-5884d1feecb7fd0b89c29a9bba61d1d1.s3tc.ctex"
-path.etc2="res://.godot/imported/heightmapper-1753349343933.png-5884d1feecb7fd0b89c29a9bba61d1d1.etc2.ctex"
+uid="uid://ceo3u04peyco7"
+path.bptc="res://.godot/imported/kloppenheim_02_puresky_2k.hdr-ed8f5b5f3c9a5e2950d760cb769b2a91.bptc.ctex"
+path.astc="res://.godot/imported/kloppenheim_02_puresky_2k.hdr-ed8f5b5f3c9a5e2950d760cb769b2a91.astc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/heightmapper-1753349343933.png"
-dest_files=["res://.godot/imported/heightmapper-1753349343933.png-5884d1feecb7fd0b89c29a9bba61d1d1.s3tc.ctex", "res://.godot/imported/heightmapper-1753349343933.png-5884d1feecb7fd0b89c29a9bba61d1d1.etc2.ctex"]
+source_file="res://assets/textures/kloppenheim_02_puresky_2k.hdr"
+dest_files=["res://.godot/imported/kloppenheim_02_puresky_2k.hdr-ed8f5b5f3c9a5e2950d760cb769b2a91.bptc.ctex", "res://.godot/imported/kloppenheim_02_puresky_2k.hdr-ed8f5b5f3c9a5e2950d760cb769b2a91.astc.ctex"]
 
 [params]
 

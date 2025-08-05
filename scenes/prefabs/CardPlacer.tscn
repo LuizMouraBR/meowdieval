@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bgd5bescfbl0"]
 
-[ext_resource type="Script" uid="uid://csej8kiy5tjk5" path="res://CardPlacer.gd" id="1_aydie"]
-[ext_resource type="Shader" uid="uid://3vl2m37nceb" path="res://placer.gdshader" id="2_brabd"]
+[ext_resource type="Script" uid="uid://csej8kiy5tjk5" path="res://scripts/CardPlacer.gd" id="1_aydie"]
+[ext_resource type="Shader" uid="uid://3vl2m37nceb" path="res://shaders/placer.gdshader" id="2_brabd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rjlel"]
 size = Vector3(0.142, 0.005, 0.242)

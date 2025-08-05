@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://d24ae6u41i8nf"]
 
-[ext_resource type="Shader" uid="uid://c64v3jjfe3oit" path="res://firesprite.gdshader" id="1_j83sr"]
+[ext_resource type="Shader" uid="uid://c64v3jjfe3oit" path="res://shaders/firesprite.gdshader" id="1_j83sr"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_j83sr"]
 

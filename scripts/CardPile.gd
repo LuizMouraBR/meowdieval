@@ -1,6 +1,6 @@
 extends Node3D
 class_name CardPile
-const CARD_SCENE = preload("res://card.tscn")
+const CARD_SCENE = preload("res://scenes/prefabs/CardBase.tscn")
 
 func _ready() -> void:
 	for i in range(10):

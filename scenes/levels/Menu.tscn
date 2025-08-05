@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxx8f5odg0pyh"]
 
-[ext_resource type="Script" uid="uid://cop1uh6et5tvk" path="res://menu.gd" id="1_lti8b"]
-[ext_resource type="PackedScene" uid="uid://n626vapyxiin" path="res://assets/centerpillar.tscn" id="2_ouk20"]
-[ext_resource type="PackedScene" uid="uid://cyu50oim1xhyq" path="res://scene_env/scenelight_night.tscn" id="3_mae5d"]
+[ext_resource type="Script" uid="uid://cop1uh6et5tvk" path="res://scripts/MainMenu.gd" id="1_lti8b"]
+[ext_resource type="PackedScene" uid="uid://n626vapyxiin" path="res://scenes/prefabs/CenterPillar.tscn" id="2_ouk20"]
+[ext_resource type="PackedScene" uid="uid://cyu50oim1xhyq" path="res://lighting/scenelight_night.tscn" id="3_mae5d"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

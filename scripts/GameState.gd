@@ -12,7 +12,7 @@ func aspect_raio():
 	var viewport_size = get_viewport().get_visible_rect().size
 	return viewport_size.x / viewport_size.y
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if Input.is_key_label_pressed(KEY_T):
 		change_table()
 		

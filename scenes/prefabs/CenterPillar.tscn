@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d0d5xqf5v1o4v" path="res://assets/centerpillar.blend" id="1_6labh"]
 [ext_resource type="Texture2D" uid="uid://bflagxbdnkdiy" path="res://assets/textures/rock_face_03_rough_1k.jpg" id="2_84y6b"]
 [ext_resource type="Texture2D" uid="uid://dys6xh1vgakp7" path="res://assets/textures/rock_face_03_nor_gl_1k.jpg" id="3_wvy5k"]
-[ext_resource type="Shader" uid="uid://c64v3jjfe3oit" path="res://firesprite.gdshader" id="4_4ha3u"]
+[ext_resource type="Shader" uid="uid://c64v3jjfe3oit" path="res://shaders/firesprite.gdshader" id="4_4ha3u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdk14"]
 albedo_color = Color(0.556953, 0.556953, 0.556953, 1)

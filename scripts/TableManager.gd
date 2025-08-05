@@ -1,6 +1,6 @@
 extends Node
 class_name TableManager
-const TABLE = preload("res://table.tscn")
+const TABLE = preload("res://scenes/prefabs/table.tscn")
 @onready var center: TableManager = $"."
 @export var camera_rig : CameraRig
 

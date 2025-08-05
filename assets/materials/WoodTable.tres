@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cn4p8uxpry8k"]
+
+[ext_resource type="Texture2D" uid="uid://bkdsp8d63w2sc" path="res://assets/textures/wood_table_worn_diff_1k.jpg" id="1_ew4po"]
+[ext_resource type="Texture2D" uid="uid://dys6xh1vgakp7" path="res://assets/textures/rock_face_03_nor_gl_1k.jpg" id="2_jyrlf"]
+
+[resource]
+albedo_texture = ExtResource("1_ew4po")
+roughness = 0.59
+normal_enabled = true
+normal_scale = 0.18
+normal_texture = ExtResource("2_jyrlf")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.27667

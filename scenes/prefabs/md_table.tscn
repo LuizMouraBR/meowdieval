@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1jevrpe60bh1"]
+[gd_scene load_steps=4 format=3 uid="uid://c1jevrpe60bh1"]
 
 [ext_resource type="PackedScene" uid="uid://br42m80v5056y" path="res://assets/md_table.blend" id="1_wis7q"]
-[ext_resource type="Script" uid="uid://bcp0km8xnl210" path="res://MDTable.gd" id="2_4fd2h"]
+[ext_resource type="Script" uid="uid://bcp0km8xnl210" path="res://scripts/MDTable.gd" id="2_4fd2h"]
+[ext_resource type="Material" uid="uid://bcxcletb5jevm" path="res://assets/materials/FieryOverlay.tres" id="3_67m4x"]
 
 [node name="md_table" instance=ExtResource("1_wis7q")]
 script = ExtResource("2_4fd2h")
+
+[node name="Skin1" parent="." index="0"]
+material_overlay = ExtResource("3_67m4x")
 
 [node name="Marker3D" type="Marker3D" parent="." index="20"]
 transform = Transform3D(1, 0, 0, 0, 0.785263, 0.619162, 0, -0.619162, 0.785263, 0, 0.43397, -0.496439)

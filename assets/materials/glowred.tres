@@ -1,7 +1,25 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://dyykdrvx605ut"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dyykdrvx605ut"]
+
+[sub_resource type="Gradient" id="Gradient_81gfd"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_55nvi"]
+gradient = SubResource("Gradient_81gfd")
+
+[sub_resource type="Gradient" id="Gradient_xao8o"]
+offsets = PackedFloat32Array(0.357798, 0.857798)
+colors = PackedColorArray(1, 0.238542, 0.517968, 1, 0, 0.548661, 0.924809, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i3v6c"]
+gradient = SubResource("Gradient_xao8o")
 
 [resource]
-albedo_color = Color(0.521141, 0.521141, 0.521141, 1)
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.0
 emission_enabled = true
-emission = Color(0.891291, 4.18738e-06, 8.66354e-07, 1)
-emission_energy_multiplier = 16.0
+emission = Color(1, 0.377676, 0.31281, 1)
+emission_energy_multiplier = 3.2
+rim_tint = 1.0
+rim_texture = SubResource("GradientTexture1D_i3v6c")
+anisotropy = 1.0
+ao_texture = SubResource("GradientTexture2D_55nvi")
+backlight = Color(1, 0, 0, 1)

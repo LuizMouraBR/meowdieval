@@ -44,7 +44,7 @@ void fragment() {
 	vec3 first_noise = texture(scroller, UV + vec2(TIME / -32.0f, TIME / 32.0f)).rgb;
 	vec3 second_noise = texture(scroller, UV * 2.0f + vec2(TIME / -28.0f, TIME / -34.0f)).rgb;
 	ALBEDO = albedo.rgb * albedo_tex.rgb * (first_noise * second_noise);
-	
+
 	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
 	METALLIC = metallic_tex * metallic;
 	SPECULAR = specular;
@@ -56,7 +56,7 @@ void fragment() {
 	// Normal Map: Enabled
 	NORMAL_MAP = texture(texture_normal, base_uv).rgb;
 	NORMAL_MAP_DEPTH = normal_scale;
-	
+
 	// EMISSION = texture(scroller, UV + vec2(1.0f, TIME / 32.0f)).rgb * 20.0;
 }
 "
